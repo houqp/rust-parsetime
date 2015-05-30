@@ -19,7 +19,13 @@ enum Token {
 }
 
 fn parse_timespec(tokens: Vec<Token>, current_time: time::Tm) -> time::Tm {
-    let mut new_time = time::empty_tm();
+    let mut new_time = time::now();
+
+    // Reset to zero for midnight/noon/teatime
+    new_time.tm_hour = 0;
+    new_time.tm_min = 0;
+    new_time.tm_sec = 0;
+
     for token in tokens {
         match token {
             Token::NOW => {
@@ -27,15 +33,12 @@ fn parse_timespec(tokens: Vec<Token>, current_time: time::Tm) -> time::Tm {
             }
             Token::MIDNIGHT => {
                 new_time.tm_hour = 0;
-                new_time.tm_min = 0;
             }
             Token::NOON => {
                 new_time.tm_hour = 12;
-                new_time.tm_min = 0;
             }
             Token::TEATIME => {
                 new_time.tm_hour = 16;
-                new_time.tm_min = 0;
             }
             Token::SUN => {
                 new_time.tm_wday = 0;
