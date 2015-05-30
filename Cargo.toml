@@ -1,0 +1,10 @@
+[package]
+name = "parsetime"
+version = "0.1.0"
+authors = ["Jimmy Ngo <jingo@linkedin.com>"]
+
+[dependencies]
+time = "*"
+
+[lib]
+name = "parsetime"
