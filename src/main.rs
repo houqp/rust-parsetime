@@ -9,7 +9,8 @@ fn usage(name: String) {
 fn main() {
     let args: Vec<_> = env::args().collect();
     if args.len() > 1 {
-        let result = parsetime::parsetime(args[1].clone());
+        let arg = args[1].clone();
+        let result = parsetime::parsetime(&*arg);
         println!("{}", result.asctime());
     } else {
         usage(args[0].clone());

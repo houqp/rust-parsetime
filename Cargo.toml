@@ -8,3 +8,4 @@ time = "*"
 
 [lib]
 name = "parsetime"
+crate-type = ["rlib", "dylib", "bin"]
